@@ -5,7 +5,6 @@ RUN yum update -y && \
 	yum install python3 -y && \
 	yum install unzip -y
 
-
 # install aws cli
 RUN /usr/bin/curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" &&\
 	/usr/bin/unzip awscliv2.zip &&\
@@ -27,7 +26,7 @@ RUN yum clean all && \
 	rm -rf /var/cache/yum
 
 
-COPY s3CopySyncScript.py .
+COPY s3_copy_sync.py .
 
 # CMD is set in the batch job definition
-# CMD ["python3","s3CopySyncScript.py"]
+CMD ["python3", "s3_copy_sync.py"]
